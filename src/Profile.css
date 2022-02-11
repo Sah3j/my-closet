@@ -1,0 +1,21 @@
+.profile {
+    margin-top: 10px;
+}
+
+.profile__image {
+    float: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile__image img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.profile__name {
+    text-align: center;
+    padding-top: 10px;
+}
