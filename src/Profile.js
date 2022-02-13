@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react'
 import './Profile.css';
 import Post from './Post';
+import { onSnapshot, collection } from 'firebase/firestore';
 import { db } from './firebase';
 
 function Profile({profileName, profilePic}) {
   const [posts, setPosts] = React.useState([]);
 
   //useEffect Runs a piece of code based on a specific code.
-  useEffect(() => {
-    //this is where the code runs
-    db.collection('posts').onSnapshot(snapshot => {
-      //everytime a change is made this code runs
-      setPosts(snapshot.docs.map( doc => doc.data()));
-    })
-  }, []);
+  useEffect(
+    () => 
+      onSnapshot(collection(db, "posts"), (snapshot) => 
+      setPosts(snapshot.docs.map((doc) => ({ post: doc.data(), id: doc.id})))
+      ),
+      []
+  );
 
 
   return (
@@ -30,8 +31,8 @@ function Profile({profileName, profilePic}) {
       {/*grid posts*/}
 
       {
-        posts.map(post => (
-          <Post postImage={post.postImage} postDescription={post.postDescription} />
+        posts.map(({id, post}) => (
+          <Post key={id} postImage={post.postImage} postDescription={post.postDescription} />
         ))
       }
 

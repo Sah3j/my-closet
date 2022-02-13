@@ -20,3 +20,7 @@
   width:25%;
 }
 
+.app__signUp{
+  display: flex;
+  flex-direction: column;
+}

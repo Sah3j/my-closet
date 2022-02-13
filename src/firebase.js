@@ -1,6 +1,6 @@
 import {initializeApp} from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getAuth } from "firebase/auth";
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
@@ -13,10 +13,10 @@ const firebaseConfig = {
         measurementId: "G-6S2D8N6BKG"    
 };
 
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
-const auth = getAuth(app);
-const storage = getStorage(app);
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
+const storage = getStorage(firebaseApp);
 
 export { db, auth, storage };
